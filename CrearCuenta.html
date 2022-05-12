@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="estilos_formulario.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="crearreto">
+  <div class="form">
+    <a href="IniciarSesion.html"><span class="material-icons-outlined">arrow_back</span></a>
+    <br>
+    <br>
+    <h2 class="form_title">Crear Cuenta</h2>
+
+    <div class="form_container">
+      <div class="form_group">
+        <input type="text" id="txtnombreCrear" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Nombres</label>
+        <span class="form_line"></span>
+      </div>
+      <div class="form_group">
+        <input type="text" id="txtapellidoCrear" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Apellidos</label>
+        <span class="form_line"></span>
+      </div> 
+      <div class="form_group">
+        <input type="email" id="txtemailCrear" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Correo Electronico</label>
+        <span class="form_line"></span>
+      </div> 
+      <div class="form_group">
+        <input type="password" id="txtpasswordCrear" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Contraseña</label>
+        <span class="form_line"></span>
+      </div>
+      <button class="form_submit" onclick="cuentaNueva()">Cuenta Nueva</button>   
+
+    </div>
+  </div>
+  <script>
+      
+    var firebaseConfig = {
+      apiKey: "AIzaSyAcyTq4dkGo9bwh_fMc-FZvnaI5nCAZ4eY",
+      authDomain: "pagina-web-38ea7.firebaseapp.com",
+      projectId: "pagina-web-38ea7",
+      storageBucket: "pagina-web-38ea7.appspot.com",
+      messagingSenderId: "608673882636",
+      appId: "1:608673882636:web:ba697b21e0ad2f1ec18429",
+      measurementId: "G-2LBNHY0GMP"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    firebase.firestore();
+  </script>
+  <script src="index.js"></script>
+</body>
+</html>

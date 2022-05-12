@@ -1,0 +1,230 @@
+/* PAGINA WEB */
+@import
+url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+.header{
+    width: 100%;
+    height: 75px;
+    position: static;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.container_header{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.logo{
+    float: left;
+    line-height: 75px;
+}
+
+.logo-img{
+    width: 100px;
+    height: 75px;
+}
+
+.logoh1{
+    color: darkorchid;
+    font-weight: 400;
+    font-size: 24px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.menu{
+    float: right;
+    line-height: 75px;
+}
+
+.menu a{
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 15px;
+    line-height: normal;
+    font-size: 14px;
+    transition: all 500ms ease;
+    border-bottom: 4px solid transparent;
+}
+
+.menu a:hover{
+    color: darkorchid;
+    border-bottom: 4px solid darkorchid ;
+}
+
+input.src{
+    padding: 9px 10px 9px 28px;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    font-size: 18px;
+    border-radius: 15px;
+    color: black;
+    border: 1px solid darkorchid;
+    background: white url(search-icon.png) no-repeat 9px center;
+    width: 30px;
+    transition: all .5s;
+}
+
+input.src:hover{
+    width: 180px;
+    background-color: white;
+    border-color: darkorchid;
+    box-shadow: 0 0 5px #6dcff680;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    padding-bottom: 3em;
+    min-height: 100vh;
+}
+
+.container{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container .card{
+    width: 330px;
+    height: 430px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25;
+}
+
+.container .card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container .card img{
+    width: 330px;
+    height: 220px;
+}
+
+.container .card h4{
+    font-weight: 600;
+}
+
+.container .card p{
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    padding: 0 1em;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.container .card a{
+    font-weight: 500;
+    text-decoration: none;
+    color: #3498db;
+}
+
+
+.pie_pagina{
+    background-color: rgb(49, 49, 49);
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
+.pie_pagina .grupo1{
+    width: 100%;
+    max-width:1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 30px;
+    padding: 10px 0px;
+}
+
+.pie_pagina .grupo1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie_pagina .grupo1 .box figure img{
+    width: 250px;
+}
+
+.pie_pagina .grupo1 .box h2{
+    color: azure;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.pie_pagina .grupo1 .box p{
+    color: aliceblue;
+    margin-bottom: 10px;
+}
+
+.pie_pagina .grupo1 .redsocial a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: violet;
+    margin-right: 10px;
+    background-color: black;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.pie_pagina .grupo1 .redsocial a:hover{
+    color: darkorchid;
+}
+
+.pie_pagina .grupo2{
+    background-color: black;
+    padding: 15px 10px;
+    text-align: center;
+    color: antiquewhite;
+}
+
+.pie_pagina .grupo1 .grupo2 small{
+    color: azure;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:800px) {
+    .pie_pagina .grupo1{
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+    }
+    
+}
