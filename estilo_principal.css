@@ -98,8 +98,11 @@ body{
     line-height: 1.6;
     font-family: "Montserrat", sans-serif;
     position: relative;
-    padding-bottom: 3em;
+    padding-bottom:20em;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .container{
@@ -151,7 +154,8 @@ body{
 
 .pie_pagina{
     background-color: rgb(49, 49, 49);
-    position: static;
+    padding: 0em 0;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }

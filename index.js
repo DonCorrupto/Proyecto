@@ -1,4 +1,7 @@
 
+// FALTA CERRAR SESION, PERMISOS DE USUARIO EN LOS BOTONES, BUSCADOR, PERFIL CON LOS RETOS SUBIDOS, 
+
+
 let db = firebase.firestore();
 let auth = firebase.auth();
 
@@ -39,6 +42,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         <a class="btn btn-link btn-leer" data-id="${data.id}">Leer más</a>
       </div>`
 
+      db.collection("Usuario").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if(JSON.parse(localStorage.getItem("usuario")) == doc.id){
+            document.getElementById("nombreUsuario").innerHTML=`${doc.data().nombreUser}${doc.data().apellidoUser}`;
+          }
+        })
+      })
+
       const btnsLeermas = document.querySelectorAll('.btn-leer');
       btnsLeermas.forEach(btn => {
         btn.addEventListener('click', async (e) =>{
@@ -46,6 +57,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           //console.log(idReto);
           guardar_id_localstorage(idReto);
           window.open("Pagina_Retos.html");
+          window.close();
         })
       })
     })
@@ -88,6 +100,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         </div>
         <div class="reto-avance" id="${data.id}-Ava"></div>
         <div class="reto-solucion" id="${data.id}-SxR"></div>`
+
+        db.collection("Usuario").get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if(JSON.parse(localStorage.getItem("usuario")) == doc.id){
+              document.getElementById("nombreUsuario").innerHTML=`${doc.data().nombreUser}${doc.data().apellidoUser}`;
+            }
+          })
+        })
 
         onGetDataSolucion((querySnapshotSolucion) => {
           querySnapshotSolucion.forEach((docSolucion) => {
@@ -148,7 +168,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
         const btnsDelete = document.querySelectorAll('.btn-borrar');
         btnsDelete.forEach(btn => {
           btn.addEventListener('click', async (e) => {
-            console.log(e.target.dataset.id)
+            //console.log(e.target.dataset.id)
             await deleteReto(e.target.dataset.id)
           })
         })
@@ -159,10 +179,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             idReto = e.target.dataset.id;
-            console.log(idReto);
+            //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
             window.open("SubirSolucion.html")
+            window.close();
           })
         })
   
@@ -171,10 +192,11 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             idReto = e.target.dataset.id;
-            console.log(idReto);
+            //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
             window.open("subiravance.html")
+            window.close();
           })
         })
   
@@ -191,6 +213,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(doc.id);
             guardarInfoReto(doc.id, nombre, descripcion, representante, institucion);
             window.open("editarReto.html")
+            window.close();
           })
         })
       }
@@ -272,43 +295,89 @@ async function editarReto() {
 
 async function btnCrear() {
   window.open("CrearCuenta.html")
+  window.close();
 }
 
 var urlPdf;
 var urlImg;
 
 async function cuentaNueva(){
-  try {
-    var nombreUsuario = document.getElementById("txtnombreCrear").value
-    var apellidoUsuario = document.getElementById("txtapellidoCrear").value
-    var correoUsuario = document.getElementById("txtemailCrear").value
-    var contraseñaUsuario = document.getElementById("txtpasswordCrear").value
-    db.collection("Usuario").doc().set({
-      nombreUsuario, apellidoUsuario, correoUsuario, contraseñaUsuario
+
+  const email = document.getElementById("txtemailCrear").value;
+  const password = document.getElementById("txtpasswordCrear").value;
+  var nombreUser = document.getElementById("txtnombreCrear").value
+  var apellidoUser = document.getElementById("txtapellidoCrear").value
+  //console.log(email, password);
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      db.collection("Usuario").doc(user.uid).set({
+        nombreUser, apellidoUser, email, password
+      })
+
+      function aviso(){
+        alert("Cuenta ha sido creada");
+      }
+      
+      setTimeout(aviso, 3000);
+
+      window.open("IniciarSesion.html");
+      window.close();
+
+      // ...
     })
-    alert("Cuenta Creada");
-    window.open("IniciarSesion.html")
-  } catch (e) {
-    console.log(e)
-    alert("Error en la creación de la cuenta");
-  }
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      alert(errorMessage);
+      alert(errorCode);
+      // ..
+    });
 }
 
 // Iniciar sesion
 
 
 async function btniniciarSesion(){
-  const singEmail = document.getElementById("singemail").value;
-  const singPassword = document.getElementById("singpassword").value;
+  const email = document.getElementById("singemail").value;
+  const password = document.getElementById("singpassword").value;
 
-  auth.createUserWithEmailandPassword(singEmail, singPassword)
-      .then(userCredential => {
-          console.log("funciona");
-      })
+  auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    //console.log(user.uid);
+    alert("Inicio de Sesión con exito");
 
- //console.log(singEmail, singPassword);
+    localStorage.setItem("usuario", JSON.stringify(user.uid));
 
+    window.open("index.html");
+    window.close();
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
 
+    alert(errorMessage);
+    alert(errorCode);
+  });
+
+}
+
+async function linkLogout(){
+
+  auth.signOut().then(() => {
+    // Sign-out successful.
+    window.open("IniciarSesion.html");
+    window.close();
+  }).catch((error) => {
+    // An error happened.
+    alert("Error");
+  });
 }
 
 

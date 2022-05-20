@@ -3,6 +3,21 @@
     margin: 0;
 }
 
+.Reto_body{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    padding-bottom:25em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
 .secciones img{
     width: 330px;
     height: 220px;
@@ -71,4 +86,85 @@
 .reto-solucion a{
     text-decoration: none;
 
+}
+
+.footer{
+    background-color: rgb(49, 49, 49);
+    padding: 0em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer .grupo1{
+    width: 100%;
+    max-width:1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 30px;
+    padding: 10px 0px;
+}
+
+.footer .grupo1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer .grupo1 .box figure img{
+    width: 250px;
+}
+
+.footer .grupo1 .box h2{
+    color: azure;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.footer .grupo1 .box p{
+    color: aliceblue;
+    margin-bottom: 10px;
+}
+
+.footer .grupo1 .redsocial a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: violet;
+    margin-right: 10px;
+    background-color: black;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.footer .grupo1 .redsocial a:hover{
+    color: darkorchid;
+}
+
+.footer .grupo2{
+    background-color: black;
+    padding: 15px 10px;
+    text-align: center;
+    color: antiquewhite;
+}
+
+.footer .grupo1 .grupo2 small{
+    color: azure;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:800px) {
+    .footer .grupo1{
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+    }
+    
 }
