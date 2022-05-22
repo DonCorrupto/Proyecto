@@ -1,6 +1,5 @@
 
-// FALTA CERRAR SESION, PERMISOS DE USUARIO EN LOS BOTONES, BUSCADOR, PERFIL CON LOS RETOS SUBIDOS, 
-
+//PERMISOS DE USUARIO EN LOS BOTONES, BUSCADOR, PERFIL CON LOS RETOS SUBIDOS
 
 let db = firebase.firestore();
 let auth = firebase.auth();
@@ -86,7 +85,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 <p>${data.descripcion}</p>
                 <p>Lider del Proyecto: ${data.representante}</p>
                 <p>Institución o Empresa: ${data.institucion}</p>
-                <a href="${data.urlPdf}">Archivo PDF</a>
+                <a href="${data.urlPdf}" target="_blank">Archivo PDF</a>
             </div>
             <div>
             <img src="${data.urlImg}">
@@ -170,6 +169,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             await deleteReto(e.target.dataset.id)
+            window.open("index.html")
+            window.close();
           })
         })
   
@@ -317,11 +318,7 @@ async function cuentaNueva(){
         nombreUser, apellidoUser, email, password
       })
 
-      function aviso(){
-        alert("Cuenta ha sido creada");
-      }
-      
-      setTimeout(aviso, 3000);
+      alert("Cuenta ha sido creada");
 
       window.open("IniciarSesion.html");
       window.close();
@@ -370,10 +367,11 @@ async function btniniciarSesion(){
 
 async function linkLogout(){
 
-  auth.signOut().then(() => {
+  window.localStorage.clear();
+  window.open("IniciarSesion.html");
+  window.close();
+  firebase.auth().signOut().then(() => {
     // Sign-out successful.
-    window.open("IniciarSesion.html");
-    window.close();
   }).catch((error) => {
     // An error happened.
     alert("Error");
@@ -391,6 +389,8 @@ async function subirreto() {
       nombre, descripcion, representante, institucion, urlPdf, urlImg
     })
     alert("Se ha subido el reto");
+    window.open("index.html")
+    window.close();
   } catch (e) {
     console.log(e)
     alert("No se subio el reto");

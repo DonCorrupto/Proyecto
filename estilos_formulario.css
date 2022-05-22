@@ -52,7 +52,7 @@ body{
 }
 
 .form_input{
-    width: 100;
+    width: 100%;
     background-color: none;
     color: #706c6c;
     font-size: 1.3rem;
