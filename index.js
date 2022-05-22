@@ -169,7 +169,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             await deleteReto(e.target.dataset.id)
-            window.open("index.html")
+            window.open("PagInicial.html")
             window.close();
           })
         })
@@ -320,7 +320,7 @@ async function cuentaNueva(){
 
       alert("Cuenta ha sido creada");
 
-      window.open("IniciarSesion.html");
+      window.open("index.html");
       window.close();
 
       // ...
@@ -351,7 +351,7 @@ async function btniniciarSesion(){
 
     localStorage.setItem("usuario", JSON.stringify(user.uid));
 
-    window.open("index.html");
+    window.open("PagInicial.html");
     window.close();
     // ...
   })
@@ -368,7 +368,7 @@ async function btniniciarSesion(){
 async function linkLogout(){
 
   window.localStorage.clear();
-  window.open("IniciarSesion.html");
+  window.open("index.html");
   window.close();
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
@@ -389,7 +389,7 @@ async function subirreto() {
       nombre, descripcion, representante, institucion, urlPdf, urlImg
     })
     alert("Se ha subido el reto");
-    window.open("index.html")
+    window.open("PagInicial.html")
     window.close();
   } catch (e) {
     console.log(e)

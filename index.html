@@ -1,94 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/c1eae85dfa.js"></script>
-    <script src="https://kit.fontawesome.com/712575d4a5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/estilo_principal.css">
-    <title>Innovación Abierta</title>
-    <meta name="viewport" content="width=device-width, user-calable=no, initial-scale=1.0, maxium-scale=1.0, minium-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="estilos_formulario.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyAcyTq4dkGo9bwh_fMc-FZvnaI5nCAZ4eY",
+      authDomain: "pagina-web-38ea7.firebaseapp.com",
+      projectId: "pagina-web-38ea7",
+      storageBucket: "pagina-web-38ea7.appspot.com",
+      messagingSenderId: "608673882636",
+      appId: "1:608673882636:web:ba697b21e0ad2f1ec18429",
+      measurementId: "G-2LBNHY0GMP"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    firebase.firestore();
+    firebase.auth();
+  </script>
 </head>
-<body>
-    <header class="header">
-        <div class="container_header">
-            <div class="logo">
-                <a href="/index.html" class="logoh1">
-                    <img src="logo.svg" alt="logocompañia" class="logo-img">
-                Innovación Abierta</a>
-            </div>
-            <nav class="menu">
-                <a href="/SubirReto.html">Empieza un reto</a>
-                <input type="text" class="src" placeholder="Buscar" autocomplete="off">
-                <a href="" id="nombreUsuario"></a>
-                <a href="" onclick="linkLogout()">Cerrar Sesión</a>
-            </nav>
-        </div>
-    </header>
+
+<body class="crearreto">
+  <div class="form" id="singup">
+    <!-- <a href="index.html"><span class="material-icons-outlined">arrow_back</span></a> -->
     <br>
-    <div class="container" id="info-container">
-        <div class="card">
-            <img src="">
-            <h4></h4>
-            <p></p>
-            <a></a>
-        </div>
-    </div>
     <br>
-    <footer class="pie_pagina">
-        <div class="grupo1">
-            <div class="box">
-                <figure>
-                    <a href="#">
-                        <img src="logo.svg" alt="logocompañia">
-                    </a>
-                </figure>
-            </div>
-            <div class="box">
-                <h2>Sobre Nosotros</h2>
-                <p>Tenemos 1 año de experiencia y un regaño.</p>
-            </div>
-            <div class="box">
-                <h2>Siguenos</h2>
-                <div class="redsocial">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
-                </div>
-            </div>
-        </div>
-        <div class="grupo2">
-            <small>&copy;2021 <b>Vicks</b> - Todos los Derechos Reservados</small>
-        </div>
-    </footer>
+    <h2 class="form_title">Iniciar Sesión</h2>
+
+    <div class="form_container">
+      <div class="form_group">
+        <input type="email" id="singemail" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Correo Electronico</label>
+        <span class="form_line"></span>
+      </div>
+      <div class="form_group">
+        <input type="password" id="singpassword" class="form_input" placeholder=" ">
+        <label for="name" class="form_label">Contraseña</label>
+        <span class="form_line"></span>
+      </div> 
+      <button class="form_submit" onclick="btniniciarSesion()">Iniciar Sesión</button>
+      <button class="form_submit" onclick="btnCrear()">Crear Cuenta</button>   
 
     </div>
-    <script>
-        var firebaseConfig = {
-          apiKey: "AIzaSyAcyTq4dkGo9bwh_fMc-FZvnaI5nCAZ4eY",
-          authDomain: "pagina-web-38ea7.firebaseapp.com",
-          projectId: "pagina-web-38ea7",
-          storageBucket: "pagina-web-38ea7.appspot.com",
-          messagingSenderId: "608673882636",
-          appId: "1:608673882636:web:ba697b21e0ad2f1ec18429",
-          measurementId: "G-2LBNHY0GMP"
-        };
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-        firebase.firestore();
-      </script>
-      <script src="index.js"></script>
+  </div>
 </body>
+<script src="index.js"></script>
 </html>
