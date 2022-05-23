@@ -1,4 +1,5 @@
 
+// FALTA SUBIR EL ULTIMO UPDATE AL HOST
 //BUSCADOR, PERFIL CON LOS RETOS SUBIDOS
 
 let db = firebase.firestore();
@@ -446,6 +447,8 @@ async function btnCrear() {
 var urlPdf;
 var urlImg;
 
+
+// REGISTRA EN EL AUTH PERO NO EN LA BASE DE DATOS ERRRRRRRRRRRROOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRR
 async function cuentaNueva(){
 
   const email = document.getElementById("txtemailCrear").value;
@@ -464,9 +467,6 @@ async function cuentaNueva(){
 
       alert("Cuenta ha sido creada");
 
-      window.open("index.html");
-      window.close();
-
       // ...
     })
     .catch((error) => {
@@ -474,7 +474,7 @@ async function cuentaNueva(){
       var errorMessage = error.message;
 
       alert(errorMessage);
-      alert(errorCode);
+      //alert(errorCode);
       // ..
     });
 }
@@ -533,7 +533,7 @@ async function subirreto() {
       nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
     })
     alert("Se ha subido el reto");
-    setTimeout(window.history.back(), 500);
+    // ERROR setTimeout(window.history.back(), 500); SOLUCIONAR
   } catch (e) {
     console.log(e)
     alert("No se subio el reto");
@@ -552,7 +552,6 @@ async function subiravance() {
       })
       //console.log(reto);
       alert("Se ha subido el avance");
-      setTimeout(window.history.back(), 400);
     }
 
   } catch (e) {
@@ -573,9 +572,7 @@ async function subirsolucion() {
       db.collection("Solucion").doc().set({
         nombre, descripcion, urlPdf, reto
       })
-      //console.log(reto);
       alert("Se ha subido la Solución");
-      setTimeout(window.history.back(), 300);
     }
 
   } catch (e) {
