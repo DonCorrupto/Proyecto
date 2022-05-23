@@ -385,12 +385,13 @@ async function subirreto() {
     var descripcion = document.getElementById("Descripcion").value
     var representante = document.getElementById("nombreRepresentante").value
     var institucion = document.getElementById("institucionEmpresa").value
+    var usua = JSON.parse(localStorage.getItem("usuario"))
     db.collection("Reto").doc().set({
-      nombre, descripcion, representante, institucion, urlPdf, urlImg
+      nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
     })
     alert("Se ha subido el reto");
-    window.open("PagInicial.html")
-    window.close();
+    //window.open("PagInicial.html")
+    //window.close();
   } catch (e) {
     console.log(e)
     alert("No se subio el reto");
