@@ -2,6 +2,7 @@
 // FALTA SUBIR EL ULTIMO UPDATE AL HOST
 //BUSCADOR, PERFIL CON LOS RETOS SUBIDOS
 
+
 let db = firebase.firestore();
 let auth = firebase.auth();
 
@@ -45,7 +46,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       db.collection("Usuario").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if(JSON.parse(localStorage.getItem("usuario")) == doc.id){
-            document.getElementById("nombreUsuario").innerHTML=`${doc.data().nombreUser}${doc.data().apellidoUser}`;
+            document.getElementById("nombreUsuario").innerHTML=`${doc.data().nombreUser} ${doc.data().apellidoUser}`;
           }
         })
       })
@@ -448,7 +449,6 @@ var urlPdf;
 var urlImg;
 
 
-// REGISTRA EN EL AUTH PERO NO EN LA BASE DE DATOS ERRRRRRRRRRRROOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRR
 async function cuentaNueva(){
 
   const email = document.getElementById("txtemailCrear").value;
@@ -466,6 +466,13 @@ async function cuentaNueva(){
       })
 
       alert("Cuenta ha sido creada");
+      
+      setTimeout(() => {
+        window.open("index.html");
+        setTimeout(() => {
+          window.close();
+        }, 50);
+      }, 500);
 
       // ...
     })
@@ -495,8 +502,12 @@ async function btniniciarSesion(){
 
     localStorage.setItem("usuario", JSON.stringify(user.uid));
 
-    window.open("PagInicial.html");
-    window.close();
+    setTimeout(() => {
+      window.open("PagInicial.html");
+      setTimeout(() => {
+        window.close();
+      }, 50);
+    }, 500);
     // ...
   })
   .catch((error) => {
@@ -533,7 +544,12 @@ async function subirreto() {
       nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
     })
     alert("Se ha subido el reto");
-    // ERROR setTimeout(window.history.back(), 500); SOLUCIONAR
+    setTimeout(() => {
+      window.open("PagInicial.html");
+      setTimeout(() => {
+        window.close();
+      }, 50);
+    }, 500);
   } catch (e) {
     console.log(e)
     alert("No se subio el reto");
@@ -552,6 +568,12 @@ async function subiravance() {
       })
       //console.log(reto);
       alert("Se ha subido el avance");
+      setTimeout(() => {
+        window.open("Pagina_Retos.html");
+        setTimeout(() => {
+          window.close();
+        }, 50);
+      }, 500);
     }
 
   } catch (e) {
@@ -573,6 +595,12 @@ async function subirsolucion() {
         nombre, descripcion, urlPdf, reto
       })
       alert("Se ha subido la Solución");
+      setTimeout(() => {
+        window.open("Pagina_Retos.html");
+        setTimeout(() => {
+          window.close();
+        }, 50);
+      }, 500);
     }
 
   } catch (e) {
