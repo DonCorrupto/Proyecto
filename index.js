@@ -505,17 +505,16 @@ async function btniniciarSesion(){
     // Signed in
     var user = userCredential.user;
     //console.log(user.uid);
-    swal("Bienvenido!", "Inicio de sesión con exito!", "success");
     //alert("Inicio de Sesión con exito");
 
     localStorage.setItem("usuario", JSON.stringify(user.uid));
-
+    swal("Bienvenido!", "Inicio de sesión con exito!", "success");
     setTimeout(() => {
       window.open("PagInicial.html");
       setTimeout(() => {
         window.close();
       }, 50);
-    }, 2000);
+    }, 1000);
     // ...
   })
   .catch((error) => {
