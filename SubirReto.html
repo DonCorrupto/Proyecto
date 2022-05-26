@@ -12,7 +12,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -67,7 +68,9 @@
 
       <label for="formFile" class="form-label">Archivo PDF</label>
       <input class="controls" class="form-control" type="file" id="formFile" accept=".pdf">
-      <p>Primero debes de subir el archivo pdf y guardarlo</p>
+      <b>1. Subir la imagen y guardarlo</b>
+      <b>2. Subir el archivo pdf y guardarlo</b>
+      <b>3. Subir reto</b>
       <button class="form_submit" onclick="subirImagen()">Guardar Imagen</button>
       <button class="form_submit" onclick="uploadRetoPdf()">Guardar PDF</button>
       <button class="form_submit" onclick="subirreto()">Subir Reto</button>   

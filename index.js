@@ -421,21 +421,31 @@ const updateReto = (id, updateReto) =>
   let idEditar = local.id;
 
 async function editarReto() {
+
   try {
     var nombre = document.getElementById("nombreEditar").value
     var descripcion = document.getElementById("descripcionEditar").value
     var representante = document.getElementById("nombrerepresentanteEditar").value
     var institucion = document.getElementById("institucionEmpresaEditar").value
-    await updateReto(idEditar, {
-      nombre,
-      descripcion,
-      representante,
-      institucion
-    })
-    alert("Se ha editado el reto");
+    if (nombre.length == 0 ||descripcion.length == 0 ||representante.length == 0 ||institucion.length == 0) {
+      swal("Error!", "No se editó el reto correctamente, intentalo de nuevo. Asegurate de llenar todos los campos de textos.!", "error");
+    } else {
+      await updateReto(idEditar, {
+        nombre,
+        descripcion,
+        representante,
+        institucion
+      })
+      swal("Excelente!", "Se ha editado el reto!", "success");
+      setTimeout(() => {
+        window.open("Pagina_Retos.html");
+        setTimeout(() => {
+          window.close();
+        }, 50);
+      }, 2000);
+    }
   } catch (e) {
     console.log(e)
-    alert("No se edito el reto");
   }
 }
 
@@ -444,10 +454,6 @@ async function btnCrear() {
   window.open("CrearCuenta.html")
   window.close();
 }
-
-var urlPdf;
-var urlImg;
-
 
 async function cuentaNueva(){
 
@@ -465,14 +471,14 @@ async function cuentaNueva(){
         nombreUser, apellidoUser, email, password
       })
 
-      alert("Cuenta ha sido creada");
+      swal("Éxito!", "Cuenta ha sido creada!", "success");
       
       setTimeout(() => {
         window.open("index.html");
         setTimeout(() => {
           window.close();
         }, 50);
-      }, 500);
+      }, 2000);
 
       // ...
     })
@@ -480,7 +486,8 @@ async function cuentaNueva(){
       var errorCode = error.code;
       var errorMessage = error.message;
 
-      alert(errorMessage);
+      swal("Error!", errorMessage, "error");
+      //alert(errorMessage);
       //alert(errorCode);
       // ..
     });
@@ -498,7 +505,8 @@ async function btniniciarSesion(){
     // Signed in
     var user = userCredential.user;
     //console.log(user.uid);
-    alert("Inicio de Sesión con exito");
+    swal("Bienvenido!", "Inicio de sesión con exito!", "success");
+    //alert("Inicio de Sesión con exito");
 
     localStorage.setItem("usuario", JSON.stringify(user.uid));
 
@@ -507,15 +515,15 @@ async function btniniciarSesion(){
       setTimeout(() => {
         window.close();
       }, 50);
-    }, 500);
+    }, 2000);
     // ...
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
 
-    alert(errorMessage);
-    alert(errorCode);
+    swal("Error!", errorMessage, "error");
+    //alert(errorMessage);
   });
 
 }
@@ -533,6 +541,8 @@ async function linkLogout(){
   });
 }
 
+var urlPdf;
+var urlImg;
 async function subirreto() {
   try {
     var nombre = document.getElementById("nombreReto").value
@@ -540,19 +550,27 @@ async function subirreto() {
     var representante = document.getElementById("nombreRepresentante").value
     var institucion = document.getElementById("institucionEmpresa").value
     var usua = JSON.parse(localStorage.getItem("usuario"))
-    db.collection("Reto").doc().set({
-      nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
-    })
-    alert("Se ha subido el reto");
-    setTimeout(() => {
-      window.open("PagInicial.html");
+
+    if (nombre.length == 0 ||descripcion.length == 0 ||representante.length == 0 ||institucion.length == 0) {
+      swal("Error!", "LLena todos los campos de textos!", "error");
+    } else {
+      db.collection("Reto").doc().set({
+        nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
+      })
+      swal("Grandioso!", "El reto se ha subido correctamente!", "success");
+      localStorage.setItem("pdf", JSON.stringify(false));
+      localStorage.setItem("image", JSON.stringify(false));
+      //alert("Se ha subido el reto");
       setTimeout(() => {
-        window.close();
-      }, 50);
-    }, 500);
+        window.open("PagInicial.html");
+        setTimeout(() => {
+          window.close();
+        }, 25);
+      }, 2000);
+    }
   } catch (e) {
     console.log(e)
-    alert("No se subio el reto");
+    swal("Error!", e, "error");
   }
 }
 
@@ -563,23 +581,28 @@ async function subiravance() {
     let reto = obtener_localstorage();
     if (reto) {
       var numero = document.getElementById("numeroAvance").value
-      db.collection("Avance").doc().set({
-        numero, urlPdf, reto
-      })
-      //console.log(reto);
-      alert("Se ha subido el avance");
-      setTimeout(() => {
-        window.open("Pagina_Retos.html");
+      if (numero.length == 0) {
+        swal("Error!", "LLena todos los campos de textos!", "error");
+      } else {
+        db.collection("Avance").doc().set({
+          numero, urlPdf, reto
+        })
+        //console.log(reto);
+        //alert("Se ha subido el avance");
+        swal("Grandioso!", "Se ha subido el avance!", "success");
         setTimeout(() => {
-          window.close();
-        }, 50);
-      }, 500);
+          window.open("Pagina_Retos.html");
+          setTimeout(() => {
+            window.close();
+          }, 50);
+        }, 2000);
+      }
     }
-
   } catch (e) {
     console.log(e);
     //console.log(reto);
-    alert("No se subio el avance")
+    //alert("No se subio el avance")
+    swal("Error!", e, "error");
   }
 }
 
@@ -591,22 +614,27 @@ async function subirsolucion() {
     if (reto) {
       var nombre = document.getElementById("nombreSolucion").value
       var descripcion = document.getElementById("descripcion").value
-      db.collection("Solucion").doc().set({
-        nombre, descripcion, urlPdf, reto
-      })
-      alert("Se ha subido la Solución");
-      setTimeout(() => {
-        window.open("Pagina_Retos.html");
+      if (nombre.length == 0 || descripcion.length == 0) {
+        swal("Error!", "LLena todos los campos de textos!", "error");
+      } else {
+        db.collection("Solucion").doc().set({
+          nombre, descripcion, urlPdf, reto
+        })
+        //alert("Se ha subido la Solución");
+        swal("Grandioso!", "Se ha subido la solución!", "success");
         setTimeout(() => {
-          window.close();
-        }, 50);
-      }, 500);
+          window.open("Pagina_Retos.html");
+          setTimeout(() => {
+            window.close();
+          }, 50);
+        }, 2000);
+      }
     }
 
   } catch (e) {
     console.log(e);
     //console.log(reto);
-    alert("No se subio la solución")
+    swal("Error!", e, "error");
   }
 }
 
@@ -614,6 +642,7 @@ async function subirsolucion() {
 function uploadRetoPdf() {
   try {
     console.log("cargando...")
+    swal("Cargando!", "", "info");
     const ref = firebase.storage().ref();
     const file = document.getElementById('formFile').files[0];
     var hoy = new Date();
@@ -622,7 +651,8 @@ function uploadRetoPdf() {
     const name = file.name + ':' + horaFecha;
     console.log(name);
     if (file == null) {
-      alert("Suba el archivo PDF!");
+      //alert("Suba el archivo PDF!");
+      swal("Suba el archivo PDF!", "", "warning");
     } else {
       const metadata = {
         contentType: file.type
@@ -634,13 +664,16 @@ function uploadRetoPdf() {
 
           urlPdf = url
           console.log("cargado.")
-          alert("Se ha cargado el pdf")
+          //alert("Se ha cargado el pdf")
+          swal("Grandioso!", "PDF Subido!", "success");
         });
 
     }
   } catch (E) {
     console.log(E)
-    alert("No se subio el archivo");
+    console.log("No se subio el archivo");
+    swal("Suba el archivo PDF!", "", "warning");
+
   }
 
 }
@@ -649,6 +682,7 @@ function uploadRetoPdf() {
 function subirImagen(){
   try {
     console.log("cargando...")
+    swal("Cargando!", "", "info");
     const ref = firebase.storage().ref();
     const file = document.getElementById('fileImg').files[0];
     var hoy = new Date();
@@ -657,7 +691,8 @@ function subirImagen(){
     const name = file.name + ':' + horaFecha;
     console.log(name);
     if (file == null) {
-      alert("Suba el archivo PDF!");
+      //alert("Suba el archivo PDF!");
+      swal("Suba la imagen!", "", "warning");
     } else {
       const metadata = {
         contentType: file.type
@@ -669,14 +704,17 @@ function subirImagen(){
 
           urlImg = url
           console.log("cargado.")
-          alert("Se ha cargado la imagen")
+          //alert("Se ha cargado la imagen")
+          swal("Grandioso!", "Imagen subida!", "success");
         });
 
     }
   } catch (E) {
     console.log(E)
-    alert("No se subio el archivo");
+    //alert("No se subio el archivo");
+    swal("Error!", E, "warning");
   }
 }
+
 
 

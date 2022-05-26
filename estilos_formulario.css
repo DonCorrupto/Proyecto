@@ -97,6 +97,18 @@ body{
     cursor: pointer;
 }
 
+.form_submit:disabled{
+    background-color:mediumpurple;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .8em 0;
+    border: none;
+    border-radius: .5em;
+    cursor: default;
+}
+
 .form_line{
     position: absolute;
     bottom: 0;
