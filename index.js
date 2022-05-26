@@ -557,8 +557,6 @@ async function subirreto() {
         nombre, descripcion, representante, institucion, urlPdf, urlImg, usua
       })
       swal("Grandioso!", "El reto se ha subido correctamente!", "success");
-      localStorage.setItem("pdf", JSON.stringify(false));
-      localStorage.setItem("image", JSON.stringify(false));
       //alert("Se ha subido el reto");
       setTimeout(() => {
         window.open("PagInicial.html");
