@@ -57,8 +57,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           idReto = e.target.dataset.id;
           //console.log(idReto);
           guardar_id_localstorage(idReto);
-          window.open("Pagina_Retos.html");
-          window.close();
+          window.open("Pagina_Retos.html","_self");
         })
       })
     })
@@ -137,6 +136,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 btn.addEventListener('click', async (e) => {
                   //console.log(e.target.dataset.id);
                   await deleteSolucion(e.target.dataset.id)
+                  location.reload();
                 })
               })
             }
@@ -166,6 +166,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                 btn.addEventListener('click', async (e) => {
                   //console.log(e.target.dataset.id);
                   await deleteAvance(e.target.dataset.id)
+                  location.reload();
+
                 })
               })
             }
@@ -177,8 +179,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             await deleteReto(e.target.dataset.id)
-            window.open("PagInicial.html")
-            window.close();
+            window.open("PagInicial.html","_self");
           })
         })
   
@@ -191,8 +192,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
-            window.open("SubirSolucion.html")
-            window.close();
+            window.open("SubirSolucion.html","_self")
           })
         })
   
@@ -204,8 +204,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
-            window.open("subiravance.html")
-            window.close();
+            window.open("subiravance.html","_self")
           })
         })
   
@@ -221,8 +220,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(nombre, descripcion, institucion, representante);
             //console.log(doc.id);
             guardarInfoReto(doc.id, nombre, descripcion, representante, institucion);
-            window.open("editarReto.html")
-            window.close();
+            window.open("editarReto.html","_self")
           })
         })
       }
@@ -313,8 +311,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           btn.addEventListener('click', async (e) => {
             //console.log(e.target.dataset.id)
             await deleteReto(e.target.dataset.id)
-            window.open("PagInicial.html")
-            window.close();
+            window.open("PagInicial.html","_self")
           })
         })
   
@@ -327,8 +324,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
-            window.open("SubirSolucion.html")
-            window.close();
+            window.open("SubirSolucion.html","_self")
           })
         })
   
@@ -340,8 +336,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(idReto);
             guardar_id_localstorage(idReto);
             obtener_localstorage();
-            window.open("subiravance.html")
-            window.close();
+            window.open("subiravance.html","_self")
           })
         })
   
@@ -357,8 +352,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             //console.log(nombre, descripcion, institucion, representante);
             //console.log(doc.id);
             guardarInfoReto(doc.id, nombre, descripcion, representante, institucion);
-            window.open("editarReto.html")
-            window.close();
+            window.open("editarReto.html","_self")
           })
         })
       }
@@ -438,10 +432,7 @@ async function editarReto() {
       })
       swal("Excelente!", "Se ha editado el reto!", "success");
       setTimeout(() => {
-        window.open("Pagina_Retos.html");
-        setTimeout(() => {
-          window.close();
-        }, 50);
+        window.open("Pagina_Retos.html","_self");
       }, 2000);
     }
   } catch (e) {
@@ -451,8 +442,7 @@ async function editarReto() {
 
 
 async function btnCrear() {
-  window.open("CrearCuenta.html")
-  window.close();
+  window.open("CrearCuenta.html","_self")
 }
 
 async function cuentaNueva(){
@@ -474,10 +464,7 @@ async function cuentaNueva(){
       swal("Éxito!", "Cuenta ha sido creada!", "success");
       
       setTimeout(() => {
-        window.open("index.html");
-        setTimeout(() => {
-          window.close();
-        }, 50);
+        window.open("index.html","_self");
       }, 2000);
 
       // ...
@@ -510,11 +497,8 @@ async function btniniciarSesion(){
     localStorage.setItem("usuario", JSON.stringify(user.uid));
     swal("Bienvenido!", "Inicio de sesión con exito!", "success");
     setTimeout(() => {
-      window.open("PagInicial.html");
-      setTimeout(() => {
-        window.close();
-      }, 50);
-    }, 1000);
+      window.open("PagInicial.html","_self");
+    }, 2000);
     // ...
   })
   .catch((error) => {
@@ -530,10 +514,9 @@ async function btniniciarSesion(){
 async function linkLogout(){
 
   window.localStorage.clear();
-  window.open("index.html");
-  window.close();
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
+    window.open("index.html","_self");
   }).catch((error) => {
     // An error happened.
     alert("Error");
@@ -550,6 +533,11 @@ async function subirreto() {
     var institucion = document.getElementById("institucionEmpresa").value
     var usua = JSON.parse(localStorage.getItem("usuario"))
 
+    subirImagen()
+    uploadRetoPdf()
+
+    swal("Cargando!", "", "info");
+
     if (nombre.length == 0 ||descripcion.length == 0 ||representante.length == 0 ||institucion.length == 0) {
       swal("Error!", "LLena todos los campos de textos!", "error");
     } else {
@@ -559,10 +547,7 @@ async function subirreto() {
       swal("Grandioso!", "El reto se ha subido correctamente!", "success");
       //alert("Se ha subido el reto");
       setTimeout(() => {
-        window.open("PagInicial.html");
-        setTimeout(() => {
-          window.close();
-        }, 25);
+        window.open("PagInicial.html","_self");
       }, 2000);
     }
   } catch (e) {
@@ -578,6 +563,10 @@ async function subiravance() {
     let reto = obtener_localstorage();
     if (reto) {
       var numero = document.getElementById("numeroAvance").value
+      uploadRetoPdf()
+
+      swal("Cargando!", "", "info");
+
       if (numero.length == 0) {
         swal("Error!", "LLena todos los campos de textos!", "error");
       } else {
@@ -588,10 +577,7 @@ async function subiravance() {
         //alert("Se ha subido el avance");
         swal("Grandioso!", "Se ha subido el avance!", "success");
         setTimeout(() => {
-          window.open("Pagina_Retos.html");
-          setTimeout(() => {
-            window.close();
-          }, 50);
+          window.open("Pagina_Retos.html","_self");
         }, 2000);
       }
     }
@@ -611,6 +597,10 @@ async function subirsolucion() {
     if (reto) {
       var nombre = document.getElementById("nombreSolucion").value
       var descripcion = document.getElementById("descripcion").value
+      uploadRetoPdf()
+
+      swal("Cargando!", "", "info");
+      
       if (nombre.length == 0 || descripcion.length == 0) {
         swal("Error!", "LLena todos los campos de textos!", "error");
       } else {
@@ -620,10 +610,7 @@ async function subirsolucion() {
         //alert("Se ha subido la Solución");
         swal("Grandioso!", "Se ha subido la solución!", "success");
         setTimeout(() => {
-          window.open("Pagina_Retos.html");
-          setTimeout(() => {
-            window.close();
-          }, 50);
+          window.open("Pagina_Retos.html","_self");
         }, 2000);
       }
     }
@@ -639,7 +626,7 @@ async function subirsolucion() {
 function uploadRetoPdf() {
   try {
     console.log("cargando...")
-    swal("Cargando!", "", "info");
+    //swal("Cargando!", "", "info");
     const ref = firebase.storage().ref();
     const file = document.getElementById('formFile').files[0];
     var hoy = new Date();
@@ -662,7 +649,6 @@ function uploadRetoPdf() {
           urlPdf = url
           console.log("cargado.")
           //alert("Se ha cargado el pdf")
-          swal("Grandioso!", "PDF Subido!", "success");
         });
 
     }
@@ -679,7 +665,7 @@ function uploadRetoPdf() {
 function subirImagen(){
   try {
     console.log("cargando...")
-    swal("Cargando!", "", "info");
+    //swal("Cargando!", "", "info");
     const ref = firebase.storage().ref();
     const file = document.getElementById('fileImg').files[0];
     var hoy = new Date();
@@ -702,7 +688,6 @@ function subirImagen(){
           urlImg = url
           console.log("cargado.")
           //alert("Se ha cargado la imagen")
-          swal("Grandioso!", "Imagen subida!", "success");
         });
 
     }
